@@ -53,7 +53,9 @@ static uint32_t framebuf[WIDTH * HEIGHT];
 int main()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
-	
+	padConfigureInput(1, HidNpadStyleSet_NpadStandard);
+	PadState pad;
+	padInitializeDefault(&pad);
 	int i;
 	uint32_t sum;
 	uint8_t avg;
@@ -74,9 +76,9 @@ int main()
 
 	while(appletMainLoop())
 	{
-			hidScanInput();
-			u32 kDownAbb = hidKeysDown(CONTROLLER_P1_AUTO);
-			if (kDownAbb & KEY_PLUS){ break; }
+			padUpdate(&pad);
+			u64 kDownAbb = padGetButtonsDown(&pad);
+			if (kDownAbb & HidNpadButton_Plus){ break; }
 			
 			for (i = WIDTH + 1; i < (HEIGHT - 1) * WIDTH - 1; i++) {
 					/* Average the eight neighbours. */
