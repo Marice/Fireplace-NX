@@ -43,6 +43,8 @@ SOURCES		:=	src
 DATA		:=	data
 INCLUDES	:=	include
 #ROMFS	:=	romfs
+ICON := icon.jpg
+APP_AUTHOR    := Marice Lamain
 
 #---------------------------------------------------------------------------------
 # options for code generation
